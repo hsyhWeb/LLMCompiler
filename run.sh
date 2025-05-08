@@ -1,1 +1,1 @@
-python run_llm_compiler.py --benchmark movie --store D:/project/gitclone/LLMCompiler/log --logging --stream
+python run_llm_compiler.py --benchmark movie --store ./log --logging --stream
