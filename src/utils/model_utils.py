@@ -11,11 +11,18 @@ def get_model(
     temperature=0,
 ):
     if model_type == "openai":
+        # llm = ChatOpenAI(
+        #     model_name=model_name,  # type: ignore
+        #     openai_api_key=os.environ["OPENAI_API_KEY"],  # type: ignore
+        #     streaming=stream,
+        #     temperature=temperature
+        # )
         llm = ChatOpenAI(
-            model_name=model_name,  # type: ignore
-            openai_api_key=os.environ["OPENAI_API_KEY"],  # type: ignore
-            streaming=stream,
-            temperature=temperature,
+            model_name="deepseek-chat",  # DeepSeek的模型名称
+            openai_api_key=os.environ["OPENAI_API_KEY"],
+            openai_api_base="https://api.deepseek.com/v1",  # DeepSeek的API地址
+            temperature=0.7,
+            streaming=True  # 可选流式传输
         )
     elif model_type == "azure":
         llm = AzureChatOpenAI(

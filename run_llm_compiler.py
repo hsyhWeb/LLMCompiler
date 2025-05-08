@@ -190,6 +190,7 @@ async def main():
             joinner_prompt_final=prompts.get("output_prompt_final"),
             max_replans=configs["max_replans"],
             benchmark=args.do_benchmark,
+            name = "test"
         )
 
     all_results = {}

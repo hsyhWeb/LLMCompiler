@@ -7,7 +7,8 @@ from typing import List, Optional, Union
 import aiohttp
 import requests
 from bs4 import BeautifulSoup
-from langchain.docstore.base import Docstore
+from langchain_community.docstore.base import Docstore
+
 from langchain.docstore.document import Document
 
 
@@ -196,9 +197,10 @@ class ReActWikipedia(Docstore):
         entity = str(entity)
         entity_ = entity.replace(" ", "+")
         search_url = f"https://en.wikipedia.org/w/index.php?search={entity_}"
-
-        async with aiohttp.ClientSession() as session:
-            async with session.get(search_url) as response:
+        proxy = "http://127.0.0.1:1080"
+        timeout = aiohttp.ClientTimeout(total=30)
+        async with aiohttp.ClientSession(timeout=timeout) as session:
+            async with session.get(search_url, proxy=proxy, proxy_auth=None) as response:
                 response_text = await response.text()
 
         result = await self.apost_process(response_text, entity)
@@ -207,8 +209,8 @@ class ReActWikipedia(Docstore):
             alternative = self._get_alternative(result)
             entity_ = alternative.replace(" ", "+")
             search_url = f"https://en.wikipedia.org/w/index.php?search={entity_}"
-            async with aiohttp.ClientSession() as session:
-                async with session.get(search_url) as response:
+            async with aiohttp.ClientSession(timeout=timeout) as session:
+                async with session.get(search_url, proxy=proxy, proxy_auth=None) as response:
                     response_text = await response.text()
 
             result = await self.apost_process(
