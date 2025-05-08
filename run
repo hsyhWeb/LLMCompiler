@@ -1,0 +1,9 @@
+bs4==0.0.1
+langchain==0.2.6
+langchain-community==0.2.6
+numexpr==2.8.7
+tiktoken==0.5.2
+openai==1.3.7
+
+python run_llm_compiler.py --benchmark movie --store D:/project/gitclone/LLMCompiler/log --logging --stream
+##  删除上次 的log
