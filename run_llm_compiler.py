@@ -52,7 +52,7 @@ argparser.add_argument(
     choices=["movie", "hotpotqa", "parallelqa"],
 )
 argparser.add_argument("--store", type=str, required=True, help="store path")
-argparser.add_argument("--api_key", type=str, default=os.environ["OPENAI_API_KEY"], help="openai api key")
+argparser.add_argument("--api_key", type=str, default=None, help="openai api key")
 argparser.add_argument("--do_benchmark", action="store_true", help="do benchmark")
 argparser.add_argument(
     "--sleep_per_iter",
