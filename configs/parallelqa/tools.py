@@ -81,6 +81,7 @@ docstore = DocstoreExplorer(web_searcher)
 def generate_tools(args, model_name):
     llm_math_chain = get_model(
         model_type=args.model_type,
+        model_name=args.model_name,
         vllm_port=args.vllm_port,
         stream=False,
         temperature=0,
