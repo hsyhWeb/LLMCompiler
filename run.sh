@@ -1,1 +1,1 @@
-nohup python run_llm_compiler.py --benchmark hotpotqa --store ./log_hotpotqa --logging --stream > output_hotpotqa.log 2>&1 &
+nohup python run_llm_compiler.py --benchmark parallelqa --store ./log_parallelqa --logging --stream > output_parallelqa.log 2>&1 &
