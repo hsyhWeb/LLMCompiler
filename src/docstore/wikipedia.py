@@ -200,7 +200,7 @@ class ReActWikipedia(Docstore):
         proxy = "http://127.0.0.1:1080"
         timeout = aiohttp.ClientTimeout(total=30)
         async with aiohttp.ClientSession(timeout=timeout) as session:
-            async with session.get(search_url, proxy=proxy, proxy_auth=None) as response:
+            async with session.get(search_url, proxy=None, proxy_auth=None) as response:
                 response_text = await response.text()
 
         result = await self.apost_process(response_text, entity)
@@ -210,7 +210,7 @@ class ReActWikipedia(Docstore):
             entity_ = alternative.replace(" ", "+")
             search_url = f"https://en.wikipedia.org/w/index.php?search={entity_}"
             async with aiohttp.ClientSession(timeout=timeout) as session:
-                async with session.get(search_url, proxy=proxy, proxy_auth=None) as response:
+                async with session.get(search_url, proxy=None, proxy_auth=None) as response:
                     response_text = await response.text()
 
             result = await self.apost_process(
