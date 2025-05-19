@@ -7,8 +7,8 @@
     },
     {
         "id": "2",
-        "question": "Considering a cheetah that runs 20% faster and a peregrine falcon flying 30% slower compared to their maximum velocity, which one is faster?",
-        "answer": "peregrine falcon",
+        "question": "If Mariana Trench was 20% shallower and the Puerto Rico Trench was 20% deeper, which one would be shallower?",
+        "answer": "Mariana Trench",
         "branch": 2
     },
     {
@@ -121,8 +121,8 @@
     },
     {
         "id": "21",
-        "question": "If Texas and Florida were to merge and become one state, what would be the difference in population density between the new state and California? Answer in people / square km.",
-        "answer": "32.86",
+        "question": "If Vietnam's population grows by 10% and Japan's decreases by 5%, what would the combined population of both countries be in millions?",
+        "answer": "228.75",
         "branch": 2
     },
     {
@@ -247,8 +247,8 @@
     },
     {
         "id": "42",
-        "question": "What is the minimum depth difference in meters between the Mariana Trench and the Puerto Rico Trench, and between the Puerto Rico Trench and the Sunda Trench?",
-        "answer": "1086",
+        "question": "If Thailand's population increases by 8%, South Korea's decreases by 7%, and China's grows by 3%, what is the average population of these three countries after the changes, in millions?",
+        "answer": "522",
         "branch": 3
     },
     {
@@ -307,8 +307,8 @@
     },
     {
         "id": "52",
-        "question": "If Texas and Florida were to merge and become one state, as well as California and Michigan, what would be the largest population density among these 2 new states? Answer in people / square km.",
-        "answer": "72.73",
+        "question": "What is the smaller ratio between the population of China and Vietnam, and between the population of Japan and South Korea?",
+        "answer": "2.404",
         "branch": 3
     },
     {
@@ -432,9 +432,9 @@
         "branch": 4
     },
     {
-        "id": "73",
-        "question": "What is the maximum depth difference in meters between the Mariana Trench and the Puerto Rico Trench, the Puerto Rico Trench and the Sunda Trench, and the Sunda Trench and the South Sandwich Trench?",
-        "answer": "2608",
+       "id": "73",
+        "question": "If Vietnam's population decreases by 5%, Thailand's increases by 9%, Japan's grows by 6%, and South Korea's reduces by 4%, what would be the total population of these four countries in millions?",
+        "answer": "353.72",
         "branch": 4
     },
     {
@@ -457,8 +457,8 @@
     },
     {
         "id": "77",
-        "question": "Among the height differences in meters between Mount Everest and Mount Elbert, Mount Kilimanjaro and Mount Elbert, and K2 and Aconcagua, which value is the largest?",
-        "answer": "4447",
+        "question": "Among the length ratios of the Yangtze River to the Mississippi River, the Mississippi River to the Volga River, and the Congo River to the Volga River, which value is the largest?",
+        "answer": "1.673",
         "branch": 4
     },
     {
@@ -493,8 +493,8 @@
     },
     {
         "id": "83",
-        "question": "If Texas and Florida were to merge and become one state, as well as California and Michigan, what would be the largest population density among these 2 new states and New Jersey? Answer in people / square km.",
-        "answer": "488.19",
+        "question": "What is the largest ratio among the the population ratios of China to Thailand, Vietnam to South Korea, and Japan to Thailand?",
+        "answer": "20",
         "branch": 4
     },
     {
@@ -505,8 +505,8 @@
     },
     {
         "id": "85",
-        "question": "Factoring in a cheetah that's 35% faster in maximum speed, a peregrine falcon that's 4.5 times slower in its maximum flight velocity, a greyhound that runs 15% faster than its maximum sprint, an ostrich that's 35% speedier than its maximum speed, and a gazelle with a 20% slower sprint, which animal is the speediest?",
-        "answer": "cheetah",
+        "question": "Given that the Peru-Chile Trench deepens by 10%, the Mariana Trench becomes 20% shallower, the South Sandwich Trench is reduced by 25%, the Puerto Rico Trench gets 30% deeper, and the Sunda Trench extends by 15%, which trench would have the least depth?",
+        "answer": "South Sandwich Trench",
         "branch": 5
     },
     {
@@ -540,9 +540,9 @@
         "branch": 5
     },
     {
-        "id": "91",
-        "question": "With the Amazon Rainforest expanded by 15%, the Congo Rainforest shrunk by 10%, the Australian Forest expanded by 30%, the Borneo Rainforest grown by 20%, and the Black Forest enlarged by 200 times, which forest would become the smallest?",
-        "answer": "Borneo Rainforest",
+       "id": "91",
+        "question": "If the Empire State Building's height were increased by 50%, the Tokyo Skytree's height grew by 20%, the CN Tower's height expanded by 30%, the Ostankino Tower's height rose by 40%, and the Burj Khalifa's height was augmented by 25%, which tower would stand the tallest?",
+        "answer": "Burj Khalifa",
         "branch": 5
     },
     {
@@ -619,8 +619,8 @@
     },
     {
         "id": "104",
-        "question": "What is the minimum depth difference in meters between the Mariana Trench and the Puerto Rico Trench, the Puerto Rico Trench and the Sunda Trench, the Sunda Trench and the South Sandwich Trench, and the South Sandwich Trench and the Peru-Chile Trench?",
-        "answer": "137",
+        "question": "South Korea's population grows by 10%, Vietnam's population grows by 8%, China's population decreases by 2%, Thailand's population grows by 7%, and Japan's population decreases by 3%. What would be the combined population of all five countries in millions?",
+        "answer": "1733.35",
         "branch": 5
     },
     {
@@ -642,9 +642,9 @@
         "branch": 5
     },
     {
-        "id": "108",
-        "question": "What is the greatest height difference in meters when comparing Mount Everest with Mount Kilimanjaro, Aconcagua with Mount Elbert, K2 with Mount Elbert, and Mount Kilimanjaro with Aconcagua.",
-        "answer": "4210",
+       "id": "108",
+        "question": "Determine the smallest ratio when comparing the lengths of the Yangtze River to the Mekong River, the Mekong River to the Mississippi River, the Mississippi River to the Volga River, and the Congo River to the Volga River.",
+        "answer": "1.067",
         "branch": 5
     },
     {
