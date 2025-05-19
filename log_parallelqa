@@ -475,5 +475,313 @@
         "answer": "573.88",
         "time": 45.26148271560669,
         "stats": null
+    },
+    "70": {
+        "question": "Given the height adjustments where the Ostankino Tower increases by 9%, the Burj Khalifa decreases by 6%, the Empire State Building increases by 3%, and the CN Tower decreases by 15%, what would be the average height of these structures after the adjustments in meters?",
+        "label": "573.93",
+        "answer": "573.88",
+        "time": 45.26148271560669,
+        "stats": null
+    },
+    "71": {
+        "question": "Upon the Pacific Ocean swelling by 15%, the Atlantic Ocean shrinking by 10%, the Arctic Ocean increasing by 20%, and the Indian Ocean expanding by 12%, what's the ratio of the size of the largest ocean to the smallest ocean?",
+        "label": "11.23",
+        "answer": "11.263",
+        "time": 57.133793115615845,
+        "stats": null
+    },
+    "72": {
+        "question": "If Vietnam's population decreases by 5%, Thailand's increases by 9%, Japan's grows by 6%, and South Korea's reduces by 4%, what would be the total population of these four countries in millions?",
+        "label": "353.72",
+        "answer": "346.962",
+        "time": 58.347251415252686,
+        "stats": null
+    },
+    "73": {
+        "question": "If Vietnam's population decreases by 5%, Thailand's increases by 9%, Japan's grows by 6%, and South Korea's reduces by 4%, what would be the total population of these four countries in millions?",
+        "label": "353.72",
+        "answer": "346.962",
+        "time": 58.347251415252686,
+        "stats": null
+    },
+    "74": {
+        "question": "What is the largest depth ratio among the depth ratios of the Mariana Trench to the Sunda Trench, the Puerto Rico Trench to the Peru-Chile Trench, and the South Sandwich Trench to the Sunda Trench?",
+        "label": "1.507",
+        "answer": "1.507",
+        "time": 42.02155423164368,
+        "stats": null
+    },
+    "75": {
+        "question": "What is the maximum value among the ratios of the area of the Sahara Desert to the Arabian Desert, the Arabian Desert to the Kalahari Desert, and the Kalahari Desert to the Sonoran Desert?",
+        "label": "3.95",
+        "answer": "3.948",
+        "time": 41.6722412109375,
+        "stats": null
+    },
+    "76": {
+        "question": "Among the length ratios of the Yangtze River to the Mississippi River, the Mississippi River to the Volga River, and the Congo River to the Volga River, which value is the largest?",
+        "label": "1.673",
+        "answer": "1.673",
+        "time": 38.50213313102722,
+        "stats": null
+    },
+    "77": {
+        "question": "Among the height differences in meters between Mount Everest and Mount Elbert, Mount Kilimanjaro and Mount Elbert, and K2 and Aconcagua, which value is the largest?",
+        "label": "4447",
+        "answer": "4448.28",
+        "time": 41.66510009765625,
+        "stats": null
+    },
+    "78": {
+        "question": "Which value is the smallest among the height ratios of the Motherland Calls statue to the Christ the Redeemer statue, the Washington Monument to the Ushiku Daibutsu, and the Statue of Unity to the Ushiku Daibutsu?",
+        "label": "1.41",
+        "answer": "1.409",
+        "time": 35.46138572692871,
+        "stats": null
+    },
+    "79": {
+        "question": "Identify the smallest height difference in meters among these three pairs: the Empire State Building and the Ostankino Tower, the CN Tower and the Shanghai Tower, and the Tokyo Skytree and the Burj Khalifa.",
+        "label": "78.7",
+        "answer": "78.7",
+        "time": 41.87995457649231,
+        "stats": null
+    },
+    "80": {
+        "question": "Out of the ratios of the Congo Rainforest's area to the Borneo Rainforest, the Borneo Rainforest's area to the Black Forest, and the Amazon Rainforest's area to the Congo Forest, which value is the greatest?",
+        "label": "124.51",
+        "answer": "124.508",
+        "time": 46.524441957473755,
+        "stats": null
+    },
+    "81": {
+        "question": "Among the average sizes in square kilometers for the pairs of the Pacific Ocean and Southern Ocean, the Indian Ocean and Arctic Ocean, and the Atlantic Ocean and Southern Ocean, which value is the smallest?",
+        "label": "42310000",
+        "answer": "42310000.0",
+        "time": 41.276468992233276,
+        "stats": null
+    },
+    "82": {
+        "question": "What is the largest ratio among the the population ratios of China to Thailand, Vietnam to South Korea, and Japan to Thailand?",
+        "label": "20",
+        "answer": "21.212",
+        "time": 46.469523668289185,
+        "stats": null
+    },
+    "83": {
+        "question": "If Texas and Florida were to merge and become one state, as well as California and Michigan, what would be the largest population density among these 2 new states and New Jersey? Answer in people / square km.",
+        "label": "488.19",
+        "answer": "498.688",
+        "time": 72.32326078414917,
+        "stats": null
+    },
+    "84": {
+        "question": "Given that the Peru-Chile Trench deepens by 10%, the Mariana Trench becomes 20% shallower, the South Sandwich Trench is reduced by 25%, the Puerto Rico Trench gets 30% deeper, and the Sunda Trench extends by 15%, which trench would have the least depth?",
+        "label": "South Sandwich Trench",
+        "answer": "South Sandwich Trench",
+        "time": 52.179502725601196,
+        "stats": null
+    },
+    "85": {
+        "question": "Factoring in a cheetah that's 35% faster in maximum speed, a peregrine falcon that's 4.5 times slower in its maximum flight velocity, a greyhound that runs 15% faster than its maximum sprint, an ostrich that's 35% speedier than its maximum speed, and a gazelle with a 20% slower sprint, which animal is the speediest?",
+        "label": "cheetah",
+        "answer": "ostrich",
+        "time": 52.482654333114624,
+        "stats": null
+    },
+    "86": {
+        "question": "With the Sahara Desert's area reduce by a factor of 10, the Kalahari Desert's area magnified by 10%, the Atacama Desert's area expanded by 3.5 times, the Sonoran Desert's area doubled, and the Arabian Desert's area increased by 40%, which one covers more ground?",
+        "label": "Arabian Desert",
+        "answer": "Arabian Desert",
+        "time": 49.31744408607483,
+        "stats": null
+    },
+    "87": {
+        "question": "Given the Yangtze River shortened by 15%, the Mississippi River extended by 20%, the Volga River increased by 30%, the Mekong River expanded by 25%, and the Conga River stretched by 10%, which river spans a greater length?",
+        "label": "Mekong River",
+        "answer": "Mekong River",
+        "time": 44.455692291259766,
+        "stats": null
+    },
+    "88": {
+        "question": "If you reduce Mount Everest's height by 10%, increase Mount Kilimanjaro's height by 15%, add 30% to Aconcagua's height, decrease K2's height by 8%, and add 20% to Mount Elbert's height, which mountain would be the tallest?",
+        "label": "Aconcagua",
+        "answer": "Aconcagua",
+        "time": 59.72332000732422,
+        "stats": null
+    },
+    "89": {
+        "question": "After increasing the height of Christ the Redeemer by 2.5 times, decreasing the height of the Statue of Unity by 25%, decreasing the Washington Monument by 40%, shrinking the Motherland Calls statue by 20%, and extending the Ushiku Daibutsu by 15%, which statue would stand as the shortest in height?",
+        "label": "Motherland Calls",
+        "answer": "Motherland Calls statue",
+        "time": 58.531795263290405,
+        "stats": null
+    },
+    "90": {
+        "question": "If the Empire State Building's height were increased by 50%, the Tokyo Skytree's height grew by 20%, the CN Tower's height expanded by 30%, the Ostankino Tower's height rose by 40%, and the Burj Khalifa's height was augmented by 25%, which tower would stand the tallest?",
+        "label": "Burj Khalifa",
+        "answer": "Burj Khalifa",
+        "time": 42.85079264640808,
+        "stats": null
+    },
+    "91": {
+        "question": "With the Amazon Rainforest expanded by 15%, the Congo Rainforest shrunk by 10%, the Australian Forest expanded by 30%, the Borneo Rainforest grown by 20%, and the Black Forest enlarged by 200 times, which forest would become the smallest?",
+        "label": "Borneo Rainforest",
+        "answer": "Borneo Rainforest",
+        "time": 52.85431432723999,
+        "stats": null
+    },
+    "92": {
+        "question": "In a scenario where the Atlantic Ocean grows by 12%, the Pacific Ocean diminishes by 50%, the Indian Ocean grows by 18%, the Arctic Ocean grows by 10%, and the Southern Ocean grows by 15%, which ocean becomes the largest?",
+        "label": "Atlantic Ocean",
+        "answer": "Pacific Ocean",
+        "time": 45.39380073547363,
+        "stats": null
+    },
+    "93": {
+        "question": "Assuming Vietnam's population grows by 7%, Thailand's population grows by 6%, South Korea's population increases by 9%, Japan's decreases by 4%, and China's population grows by 1%, which country has the largest population?",
+        "label": "China",
+        "answer": "China",
+        "time": 57.86700248718262,
+        "stats": null
+    },
+    "94": {
+        "question": "If the depth of every trench increased by the following percentages: Mariana Trench by 5%, Puerto Rico Trench by 10%, Sunda Trench by 15%, South Sandwich Trench by 20%, and Peru-Chile Trench by 25%, what would be the average depth of all the trenches after the changes in meters?",
+        "label": "9810.79",
+        "answer": "9890.87",
+        "time": 54.40739893913269,
+        "stats": null
+    },
+    "95": {
+        "question": "If Mount Everest were 12% taller, Aconcagua were reduced by 18%, Tokyo Skytree grew by 6%, the CN Tower increased by 22%, and the Empire State Building became 25% taller, how many times would we need to stack the shortest structure among them to match the new height of the tallest structure?",
+        "label": "17.89",
+        "answer": "17.889",
+        "time": 67.0098659992218,
+        "stats": null
+    },
+    "96": {
+        "question": "Considering a 5% increase in the Sahara Desert, a 10% rise in the Sonoran Desert, a 15% drop in the Arabian Desert, a 20% boost in the Kalahari Desert, and the Atacama Desert doubling in size, what is the total combined size of all these deserts in square kilometers?",
+        "label": "13216500",
+        "answer": "13216500.0",
+        "time": 51.26870656013489,
+        "stats": null
+    },
+    "97": {
+        "question": "With the Yangtze River shortening by 6%, the Mississippi River lengthening by 12%, the Mekong River being increased by 9%, the Volga River decreasing by 5%, and the Congo River expanding by 10%, what is the average length of all these rivers in kilometers?",
+        "label": "4803",
+        "answer": "4730.436",
+        "time": 55.42565131187439,
+        "stats": null
+    },
+    "98": {
+        "question": "After Mount Everest grows by 3%, Mount Kilimanjaro shrinks by 4%, Aconcagua increases by 6%, K2 decreases by 2%, and Mount Elbert is expanded by 8%, what is the average height of all these mountains in meters?",
+        "label": "7069",
+        "answer": "7068.718",
+        "time": 55.48679542541504,
+        "stats": null
+    },
+    "99": {
+        "question": "Given that the Christ the Redeemer statue decreased by 10%, the Statue of Unity increased by 4%, the Washington Monument decreased by 3%, the Motherland Calls statue increased by 7%, and the Ushiku Daibutsu decreased by 9%, what is the difference in height between the shortest and the tallest statues after the adjustments in meters?",
+        "label": "153",
+        "answer": "162.28",
+        "time": 61.94433522224426,
+        "stats": null
+    },
+    "100": {
+        "question": "If the Tokyo Skytree's height increased by 4%, the Ostankino Tower's height decreased by 2%, the Shanghai Tower's height increased by 5%, the CN Tower's height increased by 7%, and the Empire State Building's height increased by 6%, what would be the average height of these five structures after the adjustments in meters?",
+        "label": "582.82",
+        "answer": "582.816",
+        "time": 64.28028798103333,
+        "stats": null
+    },
+    "101": {
+        "question": "After a 10% reduction in the Amazon Rainforest, a 12% expansion in the Congo Rainforest, a 15% increase in the Australian Forest, a 5% shrinkage in the Borneo Rainforest, and a tripling of the Black Forest's size, what is the total area covered by all these forests combined in square kilometers?",
+        "label": "9609286.60",
+        "answer": "10059286.6",
+        "time": 90.41572666168213,
+        "stats": null
+    },
+    "102": {
+        "question": "If the Atlantic Ocean's size grows by 14%, the Pacific Ocean's size decreases by 12%, the Indian Ocean's size expands by 11%, the Arctic Ocean enlarges by 13%, and the Southern Ocean reduces by 10%, what's the average size of these oceans in km^2 after the adjustments?",
+        "label": "70995064",
+        "answer": "71289004.0",
+        "time": 52.23356366157532,
+        "stats": null
+    },
+    "103": {
+        "question": "South Korea's population grows by 10%, Vietnam's population grows by 8%, China's population decreases by 2%, Thailand's population grows by 7%, and Japan's population decreases by 3%. What would be the combined population of all five countries in millions?",
+        "label": "1733.35",
+        "answer": "1733.287",
+        "time": 54.97190976142883,
+        "stats": null
+    },
+    "104": {
+        "question": "What is the minimum depth difference in meters between the Mariana Trench and the Puerto Rico Trench, the Puerto Rico Trench and the Sunda Trench, the Sunda Trench and the South Sandwich Trench, and the South Sandwich Trench and the Peru-Chile Trench?",
+        "label": "137",
+        "answer": "137.0",
+        "time": 47.91559934616089,
+        "stats": null
+    },
+    "105": {
+        "question": "Compute the largest ratio when comparing the depth of the Mariana Trench to the Puerto Rico Trench, the Peru-Chile Trench to the Sunda Trench, the Mariana Trench to the South Sandwich Trench, and the Puerto Rico Trench to the Sunda Trench.",
+        "label": "1.339",
+        "answer": "1.339",
+        "time": 45.671985149383545,
+        "stats": null
+    },
+    "106": {
+        "question": "Determine the greatest ratio when comparing the areas of the Sahara Desert to the Arabian Desert, the Arabian Desert to the Kalahari Desert, the Kalahari Desert to the Sonoran Desert, and the Sonoran Desert to the Atacama Desert.",
+        "label": "3.95",
+        "answer": "3.948",
+        "time": 42.18469023704529,
+        "stats": null
+    },
+    "107": {
+        "question": "Determine the smallest ratio when comparing the lengths of the Yangtze River to the Mekong River, the Mekong River to the Mississippi River, the Mississippi River to the Volga River, and the Congo River to the Volga River.",
+        "label": "1.067",
+        "answer": "1.067",
+        "time": 50.088595390319824,
+        "stats": null
+    },
+    "108": {
+        "question": "Determine the smallest ratio when comparing the lengths of the Yangtze River to the Mekong River, the Mekong River to the Mississippi River, the Mississippi River to the Volga River, and the Congo River to the Volga River.",
+        "label": "1.067",
+        "answer": "1.067",
+        "time": 50.088595390319824,
+        "stats": null
+    },
+    "109": {
+        "question": "Determine the smallest ratio when comparing the height of the Statue of Unity to the Washington Monument, the Washington Monument to the Ushiku Faibutsu, the Ushiku Daibutsu to the Motherland Calls statue, and the Motherland Calls statue to the Christ the Redeemer statue.",
+        "label": "1.07",
+        "answer": "1.077",
+        "time": 41.55061888694763,
+        "stats": null
+    },
+    "110": {
+        "question": "What is the maximum height difference in meters between the Burj Khalifa and the Empire State Building, the CN Tower and the Ostankino Tower, the Shanghai Tower and the Tokyo Skytree, and the Ostankino Tower and the Empire State Building?",
+        "label": "386.8",
+        "answer": "386.6",
+        "time": 49.64639472961426,
+        "stats": null
+    },
+    "111": {
+        "question": "Identify the smallest ratio from the following comparisons: Amazon Rainforest to Congo Rainforest, Congo Rainforest to Australian Forest, Australian Forest to Borneo Rainforest, and Borneo Rainforest to Black Forest.",
+        "label": "1.361",
+        "answer": "0.014",
+        "time": 52.14073729515076,
+        "stats": null
+    },
+    "112": {
+        "question": "Out of the average sizes in square kilometers for the following pairs: Pacific Ocean and Arctic Ocean, Indian Ocean and Southern Ocean, Atlantic Ocean and Indian Ocean, and Arctic Ocean and Southern Ocean, which value is the largest?",
+        "label": "89655000",
+        "answer": "89655000.0",
+        "time": 52.728599548339844,
+        "stats": null
+    },
+    "113": {
+        "question": "Determine the smallest ratio when comparing the population of China to Japan, Thailand to South Korea, Vietnam to Thailand, and Japan to Vietnam.",
+        "label": "1.25",
+        "answer": "1.23",
+        "time": 49.58418035507202,
+        "stats": null
     }
 }

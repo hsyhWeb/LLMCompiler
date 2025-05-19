@@ -1,0 +1,628 @@
+/root/miniconda3/envs/llmcompiler/lib/python3.10/site-packages/langchain/chat_models/__init__.py:31: LangChainDeprecationWarning: Importing chat models from langchain is deprecated. Importing from langchain will no longer be supported as of langchain==0.2.0. Please import from langchain-community instead:
+
+`from langchain_community.chat_models import ChatOpenAI`.
+
+To install langchain-community run `pip install -U langchain-community`.
+  warnings.warn(
+/root/miniconda3/envs/llmcompiler/lib/python3.10/site-packages/langchain/chat_models/__init__.py:31: LangChainDeprecationWarning: Importing chat models from langchain is deprecated. Importing from langchain will no longer be supported as of langchain==0.2.0. Please import from langchain-community instead:
+
+`from langchain_community.chat_models import AzureChatOpenAI`.
+
+To install langchain-community run `pip install -U langchain-community`.
+  warnings.warn(
+/root/miniconda3/envs/llmcompiler/lib/python3.10/site-packages/langchain/llms/__init__.py:548: LangChainDeprecationWarning: Importing LLMs from langchain is deprecated. Importing from langchain will no longer be supported as of langchain==0.2.0. Please import from langchain-community instead:
+
+`from langchain_community.llms import OpenAI`.
+
+To install langchain-community run `pip install -U langchain-community`.
+  warnings.warn(
+/root/miniconda3/envs/llmcompiler/lib/python3.10/site-packages/langchain_core/_api/deprecation.py:119: LangChainDeprecationWarning: The class `ChatOpenAI` was deprecated in LangChain 0.0.10 and will be removed in 0.2.0. An updated version of the class exists in the langchain-openai package and should be used instead. To use it run `pip install -U langchain-openai` and import as `from langchain_openai import ChatOpenAI`.
+  warn_deprecated(
+/root/miniconda3/envs/llmcompiler/lib/python3.10/site-packages/langchain/__init__.py:29: UserWarning: Importing verbose from langchain root module is no longer supported. Please use langchain.globals.set_verbose() / langchain.globals.get_verbose() instead.
+  warnings.warn(
+/root/miniconda3/envs/llmcompiler/lib/python3.10/site-packages/langchain/__init__.py:29: UserWarning: Importing verbose from langchain root module is no longer supported. Please use langchain.globals.set_verbose() / langchain.globals.get_verbose() instead.
+  warnings.warn(
+/root/miniconda3/envs/llmcompiler/lib/python3.10/site-packages/langchain/__init__.py:29: UserWarning: Importing verbose from langchain root module is no longer supported. Please use langchain.globals.set_verbose() / langchain.globals.get_verbose() instead.
+  warnings.warn(
+/root/miniconda3/envs/llmcompiler/lib/python3.10/site-packages/langchain/__init__.py:29: UserWarning: Importing verbose from langchain root module is no longer supported. Please use langchain.globals.set_verbose() / langchain.globals.get_verbose() instead.
+  warnings.warn(
+/root/miniconda3/envs/llmcompiler/lib/python3.10/site-packages/langchain/__init__.py:29: UserWarning: Importing verbose from langchain root module is no longer supported. Please use langchain.globals.set_verbose() / langchain.globals.get_verbose() instead.
+  warnings.warn(
+Task exception was never retrieved
+future: <Task finished name='Task-147' coro=<TaskFetchingUnit._run_task() done, defined at /root/LLMCompiler/src/llm_compiler/task_fetching_unit.py:117> exception=ValueError('unknown format from LLM: To answer the question "Texas population + Florida population," we need to extract the population numbers for Texas and Florida from the given contexts and then sum them.\n\nFrom Context 0:\n- Texas population: 31 million (as of 2024)\n\nFrom Context 1:\n- Florida population is not provided in the given context. \n\nSince the population of Florida is not available in the provided contexts, it is not possible to compute the sum. \n\nHowever, if we assume the question expects us to use the given data (even though Florida\'s population is missing), the expression would simply be the Texas population (since Florida\'s is not provided):\n\n```python\n31\n```\n\nBut this is incomplete. Since the Florida population is missing, the correct answer is that the sum cannot be computed with the given information. \n\nIf you can provide the Florida population, I can help compute the sum. \n\nFor now, the output is:\n```python\n31  # Only Texas population is known; Florida population is missing in the context.\n``` \n\nFinal answer: The sum cannot be computed because Florida\'s population is not provided in the context. Only Texas\'s population (31 million) is known.')>
+Traceback (most recent call last):
+  File "/root/LLMCompiler/src/llm_compiler/task_fetching_unit.py", line 120, in _run_task
+    observation = await task()
+  File "/root/LLMCompiler/src/llm_compiler/task_fetching_unit.py", line 55, in __call__
+    x = await self.tool(*self.args)
+  File "/root/LLMCompiler/configs/parallelqa/tools.py", line 63, in run_llm_math_chain
+    response = llm_math_chain.run(prompt)
+  File "/root/LLMCompiler/src/chains/chain.py", line 494, in run
+    return self(args[0], callbacks=callbacks, tags=tags, metadata=metadata)[
+  File "/root/LLMCompiler/src/chains/chain.py", line 299, in __call__
+    raise e
+  File "/root/LLMCompiler/src/chains/chain.py", line 293, in __call__
+    self._call(inputs, run_manager=run_manager)
+  File "/root/LLMCompiler/src/chains/llm_math_chain.py", line 268, in _call
+    return self._process_llm_result(llm_output, _run_manager)
+  File "/root/LLMCompiler/src/chains/llm_math_chain.py", line 231, in _process_llm_result
+    raise ValueError(f"unknown format from LLM: {llm_output}")
+ValueError: unknown format from LLM: To answer the question "Texas population + Florida population," we need to extract the population numbers for Texas and Florida from the given contexts and then sum them.
+
+From Context 0:
+- Texas population: 31 million (as of 2024)
+
+From Context 1:
+- Florida population is not provided in the given context. 
+
+Since the population of Florida is not available in the provided contexts, it is not possible to compute the sum. 
+
+However, if we assume the question expects us to use the given data (even though Florida's population is missing), the expression would simply be the Texas population (since Florida's is not provided):
+
+```python
+31
+```
+
+But this is incomplete. Since the Florida population is missing, the correct answer is that the sum cannot be computed with the given information. 
+
+If you can provide the Florida population, I can help compute the sum. 
+
+For now, the output is:
+```python
+31  # Only Texas population is known; Florida population is missing in the context.
+``` 
+
+Final answer: The sum cannot be computed because Florida's population is not provided in the context. Only Texas's population (31 million) is known.
+/root/miniconda3/envs/llmcompiler/lib/python3.10/site-packages/langchain/__init__.py:29: UserWarning: Importing verbose from langchain root module is no longer supported. Please use langchain.globals.set_verbose() / langchain.globals.get_verbose() instead.
+  warnings.warn(
+Run LLM Compiler
+Replan example prompt not specified, using the same prompt as the planner.
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+running task
+done task
+running task
+done task
+running task
+
+
+[1m> Entering new LLMMathChain chain...[0m
+Answer the Question based on the Context. When you write down a expression, it MUST ONLY consists of numbers and operators. Here are some guidelines that you will be PANALIZED if you don't follow:
+
+  - When you are asked for differences, you consider the absolute value of the difference. Difference of two numbers is always positive.For instance, the difference between 1 and 2 is 1, not -1.
+  - When you are applying operations (e.g. difference, summation, ratio, etc.) between multiple values in the Context, you must unify the units of those numbers. For instance, you cannot add 1 meter to 1 foot.
+     - You must pick the values in the same units if all the values are available in the same units.
+     - If not, you must convert them to the same units before applying the operation.
+  - You MUST strictly follow the unit (e.g. meter, kilometer, million, etc.) you were asked.
+     - If the Context has the numbers in same units as the question, you can directly use them.
+     - If the Context has the numbers in different units than the question, you must convert them to the units asked in the question.For example, if the question asks for the distance between two cities in kilometers, but the Context has the distance in miles, you must convert the distance to kilometers.
+  - If you are asked about a particular number in millions, billions, or any other unit, the number should be written without specifying the unit. For example, if you are asked for 100 millions, it should be written as 100, not 100 million or 100,000,000.
+ - Never introduce a variable. For instance "gazelle_max_speed * 1.4" is not allowed. Pick up a correct number from the given context.
+
+Context 0:
+Texas (/ˈtɛksəs/ ⓘ TEK-səss, locally also /ˈtɛksɪz/ TEK-siz;[8] Spanish: Texas or Tejas,[b] pronounced [ˈtexas] ⓘ) is the most populous state in the South Central region of the United States. It borders Louisiana to the east, Arkansas to the northeast, Oklahoma to the north, New Mexico to the west, and has an international border with the Mexican states of Chihuahua, Coahuila, Nuevo León, and Tamaulipas to the south and southwest. Texas has a coastline on the Gulf of Mexico to the southeast. Covering 268,596 square miles (695,660 km2) and with over 31 million residents as of 2024,[5] it is the second-largest state by area and population. Texas is nicknamed the Lone Star State for its former status as an independent republic, the Republic of Texas.[10].
+
+Context 1:
+Florida (/ˈflɒrɪdə/ ⓘ FLORR-ih-də; Spanish: [floˈɾiða] ⓘ) is a state in the Southeastern region of the United States. It borders the Gulf of Mexico to the west, Alabama to the northwest, Georgia to the north, the Atlantic Ocean to the east, the Straits of Florida to the south, and The Bahamas to the southeast. About two-thirds of Florida occupies a peninsula between the Gulf of Mexico and the Atlantic Ocean. It has the longest coastline in the contiguous United States, spanning approximately 1,350 miles (2,170 km), not including its many barrier islands. It is the only state that borders both the Gulf of Mexico and the Atlantic Ocean.
+
+Question: Texas population + Florida population
+
+Length shortened 4268
+Length shortened 4123
+Length shortened 4012
+Length shortened 3842
+[32;1m[1;3mTo answer the question "Texas population + Florida population," we need to extract the population numbers for Texas and Florida from the given contexts and then sum them.
+
+From Context 0:
+- Texas population: 31 million (as of 2024)
+
+From Context 1:
+- Florida population is not provided in the given context. 
+
+Since the population of Florida is not available in the provided contexts, it is not possible to compute the sum. 
+
+However, if we assume the question expects us to use the given data (even though Florida's population is missing), the expression would simply be the Texas population (since Florida's is not provided):
+
+```python
+31
+```
+
+But this is incomplete. Since the Florida population is missing, the correct answer is that the sum cannot be computed with the given information. 
+
+If you can provide the Florida population, I can help compute the sum. 
+
+For now, the output is:
+```python
+31  # Only Texas population is known; Florida population is missing in the context.
+``` 
+
+Final answer: The sum cannot be computed because Florida's population is not provided in the context. Only Texas's population (31 million) is known.[0mrunning task
+
+
+[1m> Entering new LLMMathChain chain...[0m
+/root/miniconda3/envs/llmcompiler/lib/python3.10/site-packages/langchain/__init__.py:29: UserWarning: Importing verbose from langchain root module is no longer supported. Please use langchain.globals.set_verbose() / langchain.globals.get_verbose() instead.
+  warnings.warn(
+/root/miniconda3/envs/llmcompiler/lib/python3.10/site-packages/langchain/__init__.py:29: UserWarning: Importing verbose from langchain root module is no longer supported. Please use langchain.globals.set_verbose() / langchain.globals.get_verbose() instead.
+  warnings.warn(
+/root/miniconda3/envs/llmcompiler/lib/python3.10/site-packages/langchain/__init__.py:29: UserWarning: Importing verbose from langchain root module is no longer supported. Please use langchain.globals.set_verbose() / langchain.globals.get_verbose() instead.
+  warnings.warn(
+/root/miniconda3/envs/llmcompiler/lib/python3.10/site-packages/langchain/__init__.py:29: UserWarning: Importing verbose from langchain root module is no longer supported. Please use langchain.globals.set_verbose() / langchain.globals.get_verbose() instead.
+  warnings.warn(
+Answer the Question based on the Context. When you write down a expression, it MUST ONLY consists of numbers and operators. Here are some guidelines that you will be PANALIZED if you don't follow:
+
+  - When you are asked for differences, you consider the absolute value of the difference. Difference of two numbers is always positive.For instance, the difference between 1 and 2 is 1, not -1.
+  - When you are applying operations (e.g. difference, summation, ratio, etc.) between multiple values in the Context, you must unify the units of those numbers. For instance, you cannot add 1 meter to 1 foot.
+     - You must pick the values in the same units if all the values are available in the same units.
+     - If not, you must convert them to the same units before applying the operation.
+  - You MUST strictly follow the unit (e.g. meter, kilometer, million, etc.) you were asked.
+     - If the Context has the numbers in same units as the question, you can directly use them.
+     - If the Context has the numbers in different units than the question, you must convert them to the units asked in the question.For example, if the question asks for the distance between two cities in kilometers, but the Context has the distance in miles, you must convert the distance to kilometers.
+  - If you are asked about a particular number in millions, billions, or any other unit, the number should be written without specifying the unit. For example, if you are asked for 100 millions, it should be written as 100, not 100 million or 100,000,000.
+ - Never introduce a variable. For instance "gazelle_max_speed * 1.4" is not allowed. Pick up a correct number from the given context.
+
+Context 0:
+Texas (/ˈtɛksəs/ ⓘ TEK-səss, locally also /ˈtɛksɪz/ TEK-siz;[8] Spanish: Texas or Tejas,[b] pronounced [ˈtexas] ⓘ) is the most populous state in the South Central region of the United States. It borders Louisiana to the east, Arkansas to the northeast, Oklahoma to the north, New Mexico to the west, and has an international border with the Mexican states of Chihuahua, Coahuila, Nuevo León, and Tamaulipas to the south and southwest. Texas has a coastline on the Gulf of Mexico to the southeast. Covering 268,596 square miles (695,660 km2) and with over 31 million residents as of 2024,[5] it is the second-largest state by area and population. Texas is nicknamed the Lone Star State for its former status as an independent republic, the Republic of Texas.[10].
+
+Context 1:
+Florida (/ˈflɒrɪdə/ ⓘ FLORR-ih-də; Spanish: [floˈɾiða] ⓘ) is a state in the Southeastern region of the United States. It borders the Gulf of Mexico to the west, Alabama to the northwest, Georgia to the north, the Atlantic Ocean to the east, the Straits of Florida to the south, and The Bahamas to the southeast. About two-thirds of Florida occupies a peninsula between the Gulf of Mexico and the Atlantic Ocean. It has the longest coastline in the contiguous United States, spanning approximately 1,350 miles (2,170 km), not including its many barrier islands. It is the only state that borders both the Gulf of Mexico and the Atlantic Ocean.
+
+Question: Texas area in km^2 + Florida area in km^2
+
+[32;1m[1;3m```text
+695660 + 170300
+```
+...numexpr.evaluate("695660 + 170300")...
+[0m
+Answer: [33;1m[1;3m865960[0m
+[1m> Finished chain.[0m
+done task
+running task
+running task
+running task
+================================================================================
+LLMCompiler planner response: 
+ 1. search('Texas')
+2. search('Florida')
+3. math('Texas population + Florida population', ['$1', '$2'])
+4. math('Texas area in km^2 + Florida area in km^2', ['$1', '$2'])
+5. math('$3 / $4', [])
+6. search('California')
+7. search('Michigan')
+8. math('California population + Michigan population', ['$6', '$7'])
+9. math('California area in km^2 + Michigan area in km^2', ['$6', '$7'])
+10. math('$8 / $9', [])
+11. search('New Jersey')
+12. math('New Jersey population density in people / square km', ['$11'])
+13. math('max($5, $10, $12)', [])
+Thought: I can answer the question now.
+14. join()
+================================================================================
+done task
+done task
+done task
+running task
+
+
+[1m> Entering new LLMMathChain chain...[0m
+Answer the Question based on the Context. When you write down a expression, it MUST ONLY consists of numbers and operators. Here are some guidelines that you will be PANALIZED if you don't follow:
+
+  - When you are asked for differences, you consider the absolute value of the difference. Difference of two numbers is always positive.For instance, the difference between 1 and 2 is 1, not -1.
+  - When you are applying operations (e.g. difference, summation, ratio, etc.) between multiple values in the Context, you must unify the units of those numbers. For instance, you cannot add 1 meter to 1 foot.
+     - You must pick the values in the same units if all the values are available in the same units.
+     - If not, you must convert them to the same units before applying the operation.
+  - You MUST strictly follow the unit (e.g. meter, kilometer, million, etc.) you were asked.
+     - If the Context has the numbers in same units as the question, you can directly use them.
+     - If the Context has the numbers in different units than the question, you must convert them to the units asked in the question.For example, if the question asks for the distance between two cities in kilometers, but the Context has the distance in miles, you must convert the distance to kilometers.
+  - If you are asked about a particular number in millions, billions, or any other unit, the number should be written without specifying the unit. For example, if you are asked for 100 millions, it should be written as 100, not 100 million or 100,000,000.
+ - Never introduce a variable. For instance "gazelle_max_speed * 1.4" is not allowed. Pick up a correct number from the given context.
+
+Context 0:
+California (/ˌkælɪˈfɔːrnjə/) is a state in the Western United States that lies on the Pacific Coast. It borders Oregon to the north, Nevada and Arizona to the east, and shares an international border with the Mexican state of Baja California to the south. With over 39 million residents across an area of 163,696 square miles (423,970 km2), it is the largest state by population and third-largest by area.. Prior to European colonization, California was one of the most culturally and linguistically diverse areas in pre-Columbian North America. European exploration in the 16th and 17th centuries led to the colonization by the Spanish Empire.
+
+Context 1:
+Michigan (/ˈmɪʃɪɡən/ ⓘ MISH-ig-ən) is a peninsular state in the Great Lakes region of the  Upper Midwestern United States. It shares water and land boundaries with Minnesota to the northwest, Wisconsin to the west, Indiana and Illinois to the southwest, Ohio to the southeast, and the Canadian province of Ontario to the east, northeast and north. With a population of 10.14 million[8] and an area of 96,716 sq mi (250,490 km2), Michigan is the 10th-largest state by population, the 11th-largest by area, and the largest by total area east of the Mississippi River.[b] The state capital is Lansing, while its most populous city is Detroit. The Metro Detroit region in Southeast Michigan is among the nation's most populous and largest metropolitan economies. Other important metropolitan areas include Grand Rapids, Flint, Ann Arbor, Kalamazoo, the Tri-Cities, and Muskegon..
+
+Question: California population + Michigan population
+
+[32;1m[1;3m```text
+39 + 10.14
+```
+...numexpr.evaluate("39 + 10.14")...
+[0m
+Answer: [33;1m[1;3m49.14[0m
+[1m> Finished chain.[0m
+done task
+running task
+
+
+[1m> Entering new LLMMathChain chain...[0m
+/root/miniconda3/envs/llmcompiler/lib/python3.10/site-packages/langchain/__init__.py:29: UserWarning: Importing verbose from langchain root module is no longer supported. Please use langchain.globals.set_verbose() / langchain.globals.get_verbose() instead.
+  warnings.warn(
+/root/miniconda3/envs/llmcompiler/lib/python3.10/site-packages/langchain/__init__.py:29: UserWarning: Importing verbose from langchain root module is no longer supported. Please use langchain.globals.set_verbose() / langchain.globals.get_verbose() instead.
+  warnings.warn(
+/root/miniconda3/envs/llmcompiler/lib/python3.10/site-packages/langchain/__init__.py:29: UserWarning: Importing verbose from langchain root module is no longer supported. Please use langchain.globals.set_verbose() / langchain.globals.get_verbose() instead.
+  warnings.warn(
+/root/miniconda3/envs/llmcompiler/lib/python3.10/site-packages/langchain/__init__.py:29: UserWarning: Importing verbose from langchain root module is no longer supported. Please use langchain.globals.set_verbose() / langchain.globals.get_verbose() instead.
+  warnings.warn(
+/root/miniconda3/envs/llmcompiler/lib/python3.10/site-packages/langchain/__init__.py:29: UserWarning: Importing verbose from langchain root module is no longer supported. Please use langchain.globals.set_verbose() / langchain.globals.get_verbose() instead.
+  warnings.warn(
+Answer the Question based on the Context. When you write down a expression, it MUST ONLY consists of numbers and operators. Here are some guidelines that you will be PANALIZED if you don't follow:
+
+  - When you are asked for differences, you consider the absolute value of the difference. Difference of two numbers is always positive.For instance, the difference between 1 and 2 is 1, not -1.
+  - When you are applying operations (e.g. difference, summation, ratio, etc.) between multiple values in the Context, you must unify the units of those numbers. For instance, you cannot add 1 meter to 1 foot.
+     - You must pick the values in the same units if all the values are available in the same units.
+     - If not, you must convert them to the same units before applying the operation.
+  - You MUST strictly follow the unit (e.g. meter, kilometer, million, etc.) you were asked.
+     - If the Context has the numbers in same units as the question, you can directly use them.
+     - If the Context has the numbers in different units than the question, you must convert them to the units asked in the question.For example, if the question asks for the distance between two cities in kilometers, but the Context has the distance in miles, you must convert the distance to kilometers.
+  - If you are asked about a particular number in millions, billions, or any other unit, the number should be written without specifying the unit. For example, if you are asked for 100 millions, it should be written as 100, not 100 million or 100,000,000.
+ - Never introduce a variable. For instance "gazelle_max_speed * 1.4" is not allowed. Pick up a correct number from the given context.
+
+Context 0:
+California (/ˌkælɪˈfɔːrnjə/) is a state in the Western United States that lies on the Pacific Coast. It borders Oregon to the north, Nevada and Arizona to the east, and shares an international border with the Mexican state of Baja California to the south. With over 39 million residents across an area of 163,696 square miles (423,970 km2), it is the largest state by population and third-largest by area.. Prior to European colonization, California was one of the most culturally and linguistically diverse areas in pre-Columbian North America. European exploration in the 16th and 17th centuries led to the colonization by the Spanish Empire.
+
+Context 1:
+Michigan (/ˈmɪʃɪɡən/ ⓘ MISH-ig-ən) is a peninsular state in the Great Lakes region of the  Upper Midwestern United States. It shares water and land boundaries with Minnesota to the northwest, Wisconsin to the west, Indiana and Illinois to the southwest, Ohio to the southeast, and the Canadian province of Ontario to the east, northeast and north. With a population of 10.14 million[8] and an area of 96,716 sq mi (250,490 km2), Michigan is the 10th-largest state by population, the 11th-largest by area, and the largest by total area east of the Mississippi River.[b] The state capital is Lansing, while its most populous city is Detroit. The Metro Detroit region in Southeast Michigan is among the nation's most populous and largest metropolitan economies. Other important metropolitan areas include Grand Rapids, Flint, Ann Arbor, Kalamazoo, the Tri-Cities, and Muskegon..
+
+Question: California area in km^2 + Michigan area in km^2
+
+Length shortened 4393
+[32;1m[1;3m```text
+423970 + 250490
+```
+...numexpr.evaluate("423970 + 250490")...
+[0m
+Answer: [33;1m[1;3m674460[0m
+[1m> Finished chain.[0m
+done task
+running task
+
+
+[1m> Entering new LLMMathChain chain...[0m
+Answer the Question based on the Context. When you write down a expression, it MUST ONLY consists of numbers and operators. Here are some guidelines that you will be PANALIZED if you don't follow:
+
+  - When you are asked for differences, you consider the absolute value of the difference. Difference of two numbers is always positive.For instance, the difference between 1 and 2 is 1, not -1.
+  - When you are applying operations (e.g. difference, summation, ratio, etc.) between multiple values in the Context, you must unify the units of those numbers. For instance, you cannot add 1 meter to 1 foot.
+     - You must pick the values in the same units if all the values are available in the same units.
+     - If not, you must convert them to the same units before applying the operation.
+  - You MUST strictly follow the unit (e.g. meter, kilometer, million, etc.) you were asked.
+     - If the Context has the numbers in same units as the question, you can directly use them.
+     - If the Context has the numbers in different units than the question, you must convert them to the units asked in the question.For example, if the question asks for the distance between two cities in kilometers, but the Context has the distance in miles, you must convert the distance to kilometers.
+  - If you are asked about a particular number in millions, billions, or any other unit, the number should be written without specifying the unit. For example, if you are asked for 100 millions, it should be written as 100, not 100 million or 100,000,000.
+ - Never introduce a variable. For instance "gazelle_max_speed * 1.4" is not allowed. Pick up a correct number from the given context.
+
+
+
+Question: 49.14 / 674460.0
+
+[32;1m[1;3m```text
+49.14 / 674460.0
+```
+...numexpr.evaluate("49.14 / 674460.0")...
+[0m
+Answer: [33;1m[1;3m7.285828662930345e-05[0m
+[1m> Finished chain.[0m
+done task
+running task
+
+
+[1m> Entering new LLMMathChain chain...[0m
+Answer the Question based on the Context. When you write down a expression, it MUST ONLY consists of numbers and operators. Here are some guidelines that you will be PANALIZED if you don't follow:
+
+  - When you are asked for differences, you consider the absolute value of the difference. Difference of two numbers is always positive.For instance, the difference between 1 and 2 is 1, not -1.
+  - When you are applying operations (e.g. difference, summation, ratio, etc.) between multiple values in the Context, you must unify the units of those numbers. For instance, you cannot add 1 meter to 1 foot.
+     - You must pick the values in the same units if all the values are available in the same units.
+     - If not, you must convert them to the same units before applying the operation.
+  - You MUST strictly follow the unit (e.g. meter, kilometer, million, etc.) you were asked.
+     - If the Context has the numbers in same units as the question, you can directly use them.
+     - If the Context has the numbers in different units than the question, you must convert them to the units asked in the question.For example, if the question asks for the distance between two cities in kilometers, but the Context has the distance in miles, you must convert the distance to kilometers.
+  - If you are asked about a particular number in millions, billions, or any other unit, the number should be written without specifying the unit. For example, if you are asked for 100 millions, it should be written as 100, not 100 million or 100,000,000.
+ - Never introduce a variable. For instance "gazelle_max_speed * 1.4" is not allowed. Pick up a correct number from the given context.
+
+Context:
+New Jersey is a state located in both the Mid-Atlantic and Northeastern regions of the United States. Located  at the geographic hub of the heavily urbanized Northeast megalopolis, it is bordered to the northwest, north, and northeast by New York State; on its east, southeast, and south by the Atlantic Ocean; on its west by the Delaware River and Pennsylvania; and on its southwest by Delaware Bay and Delaware. At 7,354 square miles (19,050 km2), New Jersey is the fifth-smallest state in land area. As of the 2024 U.S. census estimate, it had a population of 9.5 million, its highest ever and the 11th-most populous in population the nation.
+
+Question: New Jersey population density in people / square km
+
+[32;1m[1;3m```text
+9500000 / 19050
+```
+...numexpr.evaluate("9500000 / 19050")...
+[0m
+Answer: [33;1m[1;3m498.68766404199476[0m
+[1m> Finished chain.[0m
+done task
+Traceback (most recent call last):
+  File "/root/LLMCompiler/run_llm_compiler.py", line 255, in <module>
+    results = asyncio.get_event_loop().run_until_complete(main())
+  File "/root/miniconda3/envs/llmcompiler/lib/python3.10/asyncio/base_events.py", line 636, in run_until_complete
+    self.run_forever()
+  File "/root/miniconda3/envs/llmcompiler/lib/python3.10/asyncio/base_events.py", line 603, in run_forever
+    self._run_once()
+  File "/root/miniconda3/envs/llmcompiler/lib/python3.10/asyncio/base_events.py", line 1871, in _run_once
+    event_list = self._selector.select(timeout)
+  File "/root/miniconda3/envs/llmcompiler/lib/python3.10/selectors.py", line 469, in select
+    fd_event_list = self._selector.poll(timeout, max_ev)
+KeyboardInterrupt
+/root/miniconda3/envs/llmcompiler/lib/python3.10/site-packages/langchain/chat_models/__init__.py:31: LangChainDeprecationWarning: Importing chat models from langchain is deprecated. Importing from langchain will no longer be supported as of langchain==0.2.0. Please import from langchain-community instead:
+
+`from langchain_community.chat_models import ChatOpenAI`.
+
+To install langchain-community run `pip install -U langchain-community`.
+  warnings.warn(
+/root/miniconda3/envs/llmcompiler/lib/python3.10/site-packages/langchain/chat_models/__init__.py:31: LangChainDeprecationWarning: Importing chat models from langchain is deprecated. Importing from langchain will no longer be supported as of langchain==0.2.0. Please import from langchain-community instead:
+
+`from langchain_community.chat_models import AzureChatOpenAI`.
+
+To install langchain-community run `pip install -U langchain-community`.
+  warnings.warn(
+/root/miniconda3/envs/llmcompiler/lib/python3.10/site-packages/langchain/llms/__init__.py:548: LangChainDeprecationWarning: Importing LLMs from langchain is deprecated. Importing from langchain will no longer be supported as of langchain==0.2.0. Please import from langchain-community instead:
+
+`from langchain_community.llms import OpenAI`.
+
+To install langchain-community run `pip install -U langchain-community`.
+  warnings.warn(
+/root/miniconda3/envs/llmcompiler/lib/python3.10/site-packages/langchain_core/_api/deprecation.py:119: LangChainDeprecationWarning: The class `ChatOpenAI` was deprecated in LangChain 0.0.10 and will be removed in 0.2.0. An updated version of the class exists in the langchain-openai package and should be used instead. To use it run `pip install -U langchain-openai` and import as `from langchain_openai import ChatOpenAI`.
+  warn_deprecated(
+/root/miniconda3/envs/llmcompiler/lib/python3.10/site-packages/langchain/__init__.py:29: UserWarning: Importing verbose from langchain root module is no longer supported. Please use langchain.globals.set_verbose() / langchain.globals.get_verbose() instead.
+  warnings.warn(
+/root/miniconda3/envs/llmcompiler/lib/python3.10/site-packages/langchain/__init__.py:29: UserWarning: Importing verbose from langchain root module is no longer supported. Please use langchain.globals.set_verbose() / langchain.globals.get_verbose() instead.
+  warnings.warn(
+/root/miniconda3/envs/llmcompiler/lib/python3.10/site-packages/langchain/__init__.py:29: UserWarning: Importing verbose from langchain root module is no longer supported. Please use langchain.globals.set_verbose() / langchain.globals.get_verbose() instead.
+  warnings.warn(
+Run LLM Compiler
+Replan example prompt not specified, using the same prompt as the planner.
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+Saving results
+running task
+running task
+Traceback (most recent call last):
+  File "/root/LLMCompiler/run_llm_compiler.py", line 255, in <module>
+    results = asyncio.get_event_loop().run_until_complete(main())
+  File "/root/miniconda3/envs/llmcompiler/lib/python3.10/asyncio/base_events.py", line 636, in run_until_complete
+    self.run_forever()
+  File "/root/miniconda3/envs/llmcompiler/lib/python3.10/asyncio/base_events.py", line 603, in run_forever
+    self._run_once()
+  File "/root/miniconda3/envs/llmcompiler/lib/python3.10/asyncio/base_events.py", line 1909, in _run_once
+    handle._run()
+  File "/root/miniconda3/envs/llmcompiler/lib/python3.10/asyncio/events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "/root/LLMCompiler/src/llm_compiler/task_fetching_unit.py", line 120, in _run_task
+    observation = await task()
+  File "/root/LLMCompiler/src/llm_compiler/task_fetching_unit.py", line 55, in __call__
+    x = await self.tool(*self.args)
+  File "/root/LLMCompiler/src/docstore/wikipedia.py", line 259, in asearch
+    result = await self.docstore.asearch(term)
+  File "/root/LLMCompiler/src/docstore/wikipedia.py", line 206, in asearch
+    result = await self.apost_process(response_text, entity)
+  File "/root/LLMCompiler/src/docstore/wikipedia.py", line 115, in apost_process
+    soup = BeautifulSoup(response_text, features="html.parser")
+  File "/root/miniconda3/envs/llmcompiler/lib/python3.10/site-packages/bs4/__init__.py", line 473, in __init__
+    self._feed()
+  File "/root/miniconda3/envs/llmcompiler/lib/python3.10/site-packages/bs4/__init__.py", line 658, in _feed
+    self.builder.feed(self.markup)
+  File "/root/miniconda3/envs/llmcompiler/lib/python3.10/site-packages/bs4/builder/_htmlparser.py", line 467, in feed
+    parser.feed(markup)
+  File "/root/miniconda3/envs/llmcompiler/lib/python3.10/html/parser.py", line 110, in feed
+    self.goahead(0)
+  File "/root/miniconda3/envs/llmcompiler/lib/python3.10/html/parser.py", line 170, in goahead
+    k = self.parse_starttag(i)
+  File "/root/miniconda3/envs/llmcompiler/lib/python3.10/html/parser.py", line 344, in parse_starttag
+    self.handle_starttag(tag, attrs)
+  File "/root/miniconda3/envs/llmcompiler/lib/python3.10/site-packages/bs4/builder/_htmlparser.py", line 182, in handle_starttag
+    tag = self.soup.handle_starttag(
+  File "/root/miniconda3/envs/llmcompiler/lib/python3.10/site-packages/bs4/__init__.py", line 1019, in handle_starttag
+    self.endData()
+  File "/root/miniconda3/envs/llmcompiler/lib/python3.10/site-packages/bs4/__init__.py", line 863, in endData
+    containerClass = self.string_container(containerClass)
+  File "/root/miniconda3/envs/llmcompiler/lib/python3.10/site-packages/bs4/__init__.py", line 746, in string_container
+    Type[NavigableString], self.element_classes.get(container, container)
+  File "/root/miniconda3/envs/llmcompiler/lib/python3.10/typing.py", line 309, in inner
+    return cached(*args, **kwds)
+KeyboardInterrupt
+Task exception was never retrieved
+future: <Task finished name='Task-21' coro=<TaskFetchingUnit._run_task() done, defined at /root/LLMCompiler/src/llm_compiler/task_fetching_unit.py:117> exception=KeyboardInterrupt()>
+Traceback (most recent call last):
+  File "/root/LLMCompiler/run_llm_compiler.py", line 255, in <module>
+    results = asyncio.get_event_loop().run_until_complete(main())
+  File "/root/miniconda3/envs/llmcompiler/lib/python3.10/asyncio/base_events.py", line 636, in run_until_complete
+    self.run_forever()
+  File "/root/miniconda3/envs/llmcompiler/lib/python3.10/asyncio/base_events.py", line 603, in run_forever
+    self._run_once()
+  File "/root/miniconda3/envs/llmcompiler/lib/python3.10/asyncio/base_events.py", line 1909, in _run_once
+    handle._run()
+  File "/root/miniconda3/envs/llmcompiler/lib/python3.10/asyncio/events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "/root/LLMCompiler/src/llm_compiler/task_fetching_unit.py", line 120, in _run_task
+    observation = await task()
+  File "/root/LLMCompiler/src/llm_compiler/task_fetching_unit.py", line 55, in __call__
+    x = await self.tool(*self.args)
+  File "/root/LLMCompiler/src/docstore/wikipedia.py", line 259, in asearch
+    result = await self.docstore.asearch(term)
+  File "/root/LLMCompiler/src/docstore/wikipedia.py", line 206, in asearch
+    result = await self.apost_process(response_text, entity)
+  File "/root/LLMCompiler/src/docstore/wikipedia.py", line 115, in apost_process
+    soup = BeautifulSoup(response_text, features="html.parser")
+  File "/root/miniconda3/envs/llmcompiler/lib/python3.10/site-packages/bs4/__init__.py", line 473, in __init__
+    self._feed()
+  File "/root/miniconda3/envs/llmcompiler/lib/python3.10/site-packages/bs4/__init__.py", line 658, in _feed
+    self.builder.feed(self.markup)
+  File "/root/miniconda3/envs/llmcompiler/lib/python3.10/site-packages/bs4/builder/_htmlparser.py", line 467, in feed
+    parser.feed(markup)
+  File "/root/miniconda3/envs/llmcompiler/lib/python3.10/html/parser.py", line 110, in feed
+    self.goahead(0)
+  File "/root/miniconda3/envs/llmcompiler/lib/python3.10/html/parser.py", line 170, in goahead
+    k = self.parse_starttag(i)
+  File "/root/miniconda3/envs/llmcompiler/lib/python3.10/html/parser.py", line 344, in parse_starttag
+    self.handle_starttag(tag, attrs)
+  File "/root/miniconda3/envs/llmcompiler/lib/python3.10/site-packages/bs4/builder/_htmlparser.py", line 182, in handle_starttag
+    tag = self.soup.handle_starttag(
+  File "/root/miniconda3/envs/llmcompiler/lib/python3.10/site-packages/bs4/__init__.py", line 1019, in handle_starttag
+    self.endData()
+  File "/root/miniconda3/envs/llmcompiler/lib/python3.10/site-packages/bs4/__init__.py", line 863, in endData
+    containerClass = self.string_container(containerClass)
+  File "/root/miniconda3/envs/llmcompiler/lib/python3.10/site-packages/bs4/__init__.py", line 746, in string_container
+    Type[NavigableString], self.element_classes.get(container, container)
+  File "/root/miniconda3/envs/llmcompiler/lib/python3.10/typing.py", line 309, in inner
+    return cached(*args, **kwds)
+KeyboardInterrupt
