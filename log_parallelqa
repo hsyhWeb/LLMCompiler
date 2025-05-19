@@ -139,7 +139,12 @@
         "time": 28.671624898910522,
         "stats": null
     },
-    "21": {},
+    "21": {
+        "question": "If Vietnam's population grows by 10% and Japan's decreases by 5%, what would the combined population of both countries be in millions?",
+        "label": "228.75",
+        "answer": "226.85",
+        "time": 28.671624898910522,
+        "stats": null},
     "22": {
         "question": "If the depth of the Mariana Trench were 15% shallower, the depth of the Puerto Rico Trench were 25% deeper, and the depth of the Sunda Trench increased by 20%, which trench would be the deepest?",
         "label": "Puerto Rico Trench",
