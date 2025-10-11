@@ -212,23 +212,34 @@ class LLMMathChain(Chain):
         return re.sub(r"^\[|\]$", "", output)
 
     def _process_llm_result(
-        self, llm_output: str, run_manager: CallbackManagerForChainRun
+            self, llm_output: str, run_manager: CallbackManagerForChainRun
     ) -> Dict[str, str]:
+        # 打印原始 LLM 输出
         run_manager.on_text(llm_output, color="green", verbose=self.verbose)
         llm_output = llm_output.strip()
-        text_match = re.search(r"^```text(.*?)```", llm_output, re.DOTALL)
-        if text_match:
-            expression = text_match.group(1)
+
+        # 找到第一个 ```text``` 代码块
+        text_matches = re.findall(r"```text(.*?)```", llm_output, re.DOTALL)
+        if text_matches:
+            # 取第一个匹配的表达式
+            expression = text_matches[0].strip()
             output = self._evaluate_expression(expression)
             run_manager.on_text("\nAnswer: ", verbose=self.verbose)
             run_manager.on_text(output, color="yellow", verbose=self.verbose)
             answer = "Answer: " + output
+
+        # 如果直接是 Answer: 开头
         elif llm_output.startswith("Answer:"):
-            answer = llm_output
+            answer = llm_output.strip()
+
+        # 如果输出中间有 Answer:
         elif "Answer:" in llm_output:
-            answer = "Answer: " + llm_output.split("Answer:")[-1]
+            answer = "Answer: " + llm_output.split("Answer:")[-1].strip()
+
+        # 其他未知格式，仍然抛错
         else:
             raise ValueError(f"unknown format from LLM: {llm_output}")
+
         return {self.output_key: answer}
 
     async def _aprocess_llm_result(
