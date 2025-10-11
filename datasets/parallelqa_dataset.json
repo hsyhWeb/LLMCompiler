@@ -97,8 +97,8 @@
     },
     {
         "id": "17",
-        "question": "Given the following adjustments to building/tower heights: 1. If the height of the Burj Khalifa decreased by 5% 2. and the height of the Tokyo Skytree increased by 7%, what would be the difference in height between these two structures after the adjustments in meters?",
-        "answer": "110.12",
+        "question": "Given that the height of the Christ the Redeemer statue increased by 5% and the Statue of Unity decreased by 10%, what is the combined height of both statues after the adjustments?",
+        "answer": "201.9",
         "branch": 2
     },
     {
