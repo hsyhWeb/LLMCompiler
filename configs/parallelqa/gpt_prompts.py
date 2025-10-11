@@ -1,59 +1,117 @@
 from src.llm_compiler.constants import END_OF_PLAN, JOINNER_FINISH
+from src.utils import res_planner
 
-PLANNER_PROMPT = (
-    "Question: If cheetah was 1.3 times slower, greyhound was 1.5 times faster, and falcon was 2.3 time slower then their maximum speeds, "
-    "what will be the ratio of the fastest animal to the slowest animal?\n"
-    '1. search("cheetah")\n'
-    '2. math("cheetah max speed in km/h if 1.3 times slower?", ["$1"]\n'
-    '3. search("greyhound")\n'
-    '4. math("greyhound max speed in km/h if 1.5 times faster?", ["$3"]\n'
-    '5. search("falcon")\n'
-    '6. math("falcon max speed in km/h if 2.3 times slower?", ["$5"]\n'
-    '7. math("max($2, $4, $6) / min($2, $4, $6)")\n'
-    "Thought: I can answer the question now.\n"
-    f"8. join(){END_OF_PLAN}\n"
-    "###\n"
-    "\n"
-    "Question: If Mount Everest's height were halved and Mount Kilimanjaro's height were doubled, what would be the difference in their height?\n"
-    "1. search('Mount Everest')\n"
-    '2. math("half of Mount Everest height in meter?", ["$1"])\n'
-    '3. search("Mount Kilimanjaro")\n'
-    '4. math("double of Mount Kilimanjaro height in meter?", ["$3"])\n'
-    '5. math("abs($3 - $4)")\n'
-    "Thought: I can answer the question now.\n"
-    f"6. join(){END_OF_PLAN}\n"
-    "###\n"
-    "\n"
-    "Question: With the Sahara Desert's area reduced by 33% and the Kalahari Desert's area magnified by 52%, which one covers more ground?\n"
-    "1. search('Sahara Desert')\n"
-    "2. math('Sahara Desert area in km^2 if reduced by 33%?', ['$1'])\n"
-    '3. search("Kalahari Desert")\n'
-    "4. math('Kalahari Desert area in km^2 if magnified by 52%?', ['$3'])\n"
-    "Thought: I can compare the numbers without calling math.\n"
-    f"5. join(){END_OF_PLAN}\n"
-    "###\n"
-    "\n"
-    "Question: Determine the smaller value: the depth difference in meters between the Mariana Trench and the Puerto Rico Trench, "
-    "or the depth difference in meters between the South Sandwich Trench and the Sunda Trench.\n"
-    "1. search('Mariana Trench')\n"
-    "2. search('Puerto Rico Trench')\n"
-    "3. math('absolute depth difference between Mariana and Puerto Rico Trench in meters?', ['$1', '$2'])\n"
-    "4. search('South Sandwich Trench')\n"
-    "5. search('Sunda Trench')\n"
-    "6. math('absolute depth difference between South Sandwich and Sunda Trench in meters?', ['$4', '$5'])\n"
-    "7. math('min($3, $6)')\n"
-    "Thought: I can answer the question now.\n"
-    f"8. join(){END_OF_PLAN}\n"
-    "###\n"
-    "\n"
-    "Question: What is the raio of the height of Mount Everest and the height of Mount Kilimanjaro?\n"
-    "1. search('Mount Everest')\n"
-    "2. search('Mount Kilimanjaro')\n"
-    "3. math('height of Mount Everest / height of Mount Kilimanjaro', ['$1', '$2'])\n"
-    "Thought: I can answer the question now.\n"
-    f"4. join(){END_OF_PLAN}\n"
-    "###\n"
-)
+if res_planner.ENABLE_LOGGING == True:
+    PLANNER_PROMPT =  (
+        "Question: If cheetah was 1.3 times slower, greyhound was 1.5 times faster, and falcon was 2.3 times slower than their maximum speeds, "
+        "what will be the ratio of the fastest animal to the slowest animal?\n"
+        '1. search("cheetah", "level_2")\n'  # search 改为 level_2
+        '2. math("cheetah max speed in km/h if 1.3 times slower?", ["$1"], "level_1")\n'  # math 改为 level_1
+        '3. search("greyhound", "level_2")\n'
+        '4. math("greyhound max speed in km/h if 1.5 times faster?", ["$3"], "level_1")\n'
+        '5. search("falcon", "level_2")\n'
+        '6. math("falcon max speed in km/h if 2.3 times slower?", ["$5"], "level_1")\n'
+        '7. math("max($2, $4, $6) / min($2, $4, $6)", "level_1")\n'
+        "Thought: I can answer the question now.\n"
+        f"8. join(){END_OF_PLAN}\n"
+        "###\n"
+        "\n"
+        "Question: If Mount Everest's height were halved and Mount Kilimanjaro's height were doubled, what would be the difference in their height?\n"
+        "1. search('Mount Everest', 'level_2')\n"
+        '2. math("half of Mount Everest height in meter?", ["$1"], "level_1")\n'
+        '3. search("Mount Kilimanjaro", "level_2")\n'
+        '4. math("double of Mount Kilimanjaro height in meter?", ["$3"], "level_1")\n'
+        '5. math("abs($2 - $4)", "level_1")\n'
+        "Thought: I can answer the question now.\n"
+        f"6. join(){END_OF_PLAN}\n"
+        "###\n"
+        "\n"
+        "Question: With the Sahara Desert's area reduced by 33% and the Kalahari Desert's area magnified by 52%, which one covers more ground?\n"
+        "1. search('Sahara Desert', 'level_2')\n"
+        "2. math('Sahara Desert area in km^2 if reduced by 33%?', ['$1'], 'level_1')\n"
+        '3. search("Kalahari Desert", "level_2")\n'
+        "4. math('Kalahari Desert area in km^2 if magnified by 52%?', ['$3'], 'level_1')\n"
+        "Thought: I can compare the numbers without calling math.\n"
+        f"5. join(){END_OF_PLAN}\n"
+        "###\n"
+        "\n"
+        "Question: Determine the smaller value: the depth difference in meters between the Mariana Trench and the Puerto Rico Trench, "
+        "or the depth difference in meters between the South Sandwich Trench and the Sunda Trench.\n"
+        "1. search('Mariana Trench', 'level_2')\n"
+        "2. search('Puerto Rico Trench', 'level_2')\n"
+        "3. math('absolute depth difference between Mariana and Puerto Rico Trench in meters?', ['$1', '$2'], 'level_1')\n"
+        "4. search('South Sandwich Trench', 'level_2')\n"
+        "5. search('Sunda Trench', 'level_2')\n"
+        "6. math('absolute depth difference between South Sandwich and Sunda Trench in meters?', ['$4', '$5'], 'level_1')\n"
+        "7. math('min($3, $6)', 'level_1')\n"
+        "Thought: I can answer the question now.\n"
+        f"8. join(){END_OF_PLAN}\n"
+        "###\n"
+        "\n"
+        "Question: What is the ratio of the height of Mount Everest and the height of Mount Kilimanjaro?\n"
+        "1. search('Mount Everest', 'level_2')\n"
+        "2. search('Mount Kilimanjaro', 'level_2')\n"
+        "3. math('height of Mount Everest / height of Mount Kilimanjaro', ['$1', '$2'], 'level_1')\n"
+        "Thought: I can answer the question now.\n"
+        f"4. join(){END_OF_PLAN}\n"
+        "###\n"
+    )
+
+else:
+    PLANNER_PROMPT = (
+        "Question: If cheetah was 1.3 times slower, greyhound was 1.5 times faster, and falcon was 2.3 time slower then their maximum speeds, "
+        "what will be the ratio of the fastest animal to the slowest animal?\n"
+        '1. search("cheetah")\n'
+        '2. math("cheetah max speed in km/h if 1.3 times slower?", ["$1"]\n'
+        '3. search("greyhound")\n'
+        '4. math("greyhound max speed in km/h if 1.5 times faster?", ["$3"]\n'
+        '5. search("falcon")\n'
+        '6. math("falcon max speed in km/h if 2.3 times slower?", ["$5"]\n'
+        '7. math("max($2, $4, $6) / min($2, $4, $6)")\n'
+        "Thought: I can answer the question now.\n"
+        f"8. join(){END_OF_PLAN}\n"
+        "###\n"
+        "\n"
+        "Question: If Mount Everest's height were halved and Mount Kilimanjaro's height were doubled, what would be the difference in their height?\n"
+        "1. search('Mount Everest')\n"
+        '2. math("half of Mount Everest height in meter?", ["$1"])\n'
+        '3. search("Mount Kilimanjaro")\n'
+        '4. math("double of Mount Kilimanjaro height in meter?", ["$3"])\n'
+        '5. math("abs($3 - $4)")\n'
+        "Thought: I can answer the question now.\n"
+        f"6. join(){END_OF_PLAN}\n"
+        "###\n"
+        "\n"
+        "Question: With the Sahara Desert's area reduced by 33% and the Kalahari Desert's area magnified by 52%, which one covers more ground?\n"
+        "1. search('Sahara Desert')\n"
+        "2. math('Sahara Desert area in km^2 if reduced by 33%?', ['$1'])\n"
+        '3. search("Kalahari Desert")\n'
+        "4. math('Kalahari Desert area in km^2 if magnified by 52%?', ['$3'])\n"
+        "Thought: I can compare the numbers without calling math.\n"
+        f"5. join(){END_OF_PLAN}\n"
+        "###\n"
+        "\n"
+        "Question: Determine the smaller value: the depth difference in meters between the Mariana Trench and the Puerto Rico Trench, "
+        "or the depth difference in meters between the South Sandwich Trench and the Sunda Trench.\n"
+        "1. search('Mariana Trench')\n"
+        "2. search('Puerto Rico Trench')\n"
+        "3. math('absolute depth difference between Mariana and Puerto Rico Trench in meters?', ['$1', '$2'])\n"
+        "4. search('South Sandwich Trench')\n"
+        "5. search('Sunda Trench')\n"
+        "6. math('absolute depth difference between South Sandwich and Sunda Trench in meters?', ['$4', '$5'])\n"
+        "7. math('min($3, $6)')\n"
+        "Thought: I can answer the question now.\n"
+        f"8. join(){END_OF_PLAN}\n"
+        "###\n"
+        "\n"
+        "Question: What is the raio of the height of Mount Everest and the height of Mount Kilimanjaro?\n"
+        "1. search('Mount Everest')\n"
+        "2. search('Mount Kilimanjaro')\n"
+        "3. math('height of Mount Everest / height of Mount Kilimanjaro', ['$1', '$2'])\n"
+        "Thought: I can answer the question now.\n"
+        f"4. join(){END_OF_PLAN}\n"
+        "###\n"
+    )
 
 OUTPUT_PROMPT = (
     "Solve a question answering task with interleaving Observation, Thought, and Action steps. "

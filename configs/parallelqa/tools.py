@@ -1,8 +1,9 @@
+import asyncio
 from src.agents.tools import Tool
 from src.chains.llm_math_chain import LLMMathChain
 from src.docstore.wikipedia import DocstoreExplorer, ReActWikipedia
 from src.utils.model_utils import get_model
-
+from src.utils import res_planner
 _MATH_DESCRIPTION = (
     "math(problem: str, context: Optional[list[str]]) -> float:\n"
     " - Solves the provided math problem.\n"
@@ -61,6 +62,9 @@ def run_llm_math_chain_factory(llm_math_chain):
                 f"Question: {question}\n\n"
             )
         response = llm_math_chain.run(prompt)
+        # delay = res_planner.get_delay(level)
+        # if res_planner.ENABLE_LOGGING and delay > 0:
+        #     await asyncio.sleep(delay)
         response = response.split("Answer:")[1].strip()
         try:
             response = float(response)
@@ -87,6 +91,7 @@ def generate_tools(args, model_name):
         temperature=0,
     )
     llm_math_chain = LLMMathChain.from_llm(llm=llm_math_chain, verbose=True)
+    level =""
     return [
         Tool(
             name="search",

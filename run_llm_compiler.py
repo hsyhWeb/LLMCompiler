@@ -4,7 +4,7 @@ import json
 import os
 import time
 import shutil
-
+import src.utils.res_planner
 import numpy as np
 
 from configs.hotpotqa.configs import CONFIGS as HOTPOTQA_CONFIGS
@@ -28,7 +28,7 @@ from src.react.base import initialize_react_agent_executor
 from src.utils.evaluation_utils import arun_and_time, compare_answer, normalize_answer
 from src.utils.logger_utils import enable_logging, flush_results
 from src.utils.model_utils import get_model
-
+from src.utils import res_planner
 argparser = argparse.ArgumentParser()
 argparser.add_argument("--N", type=int, default=None, help="number of samples")
 argparser.add_argument("--react", action="store_true", help="Run ReAct")
@@ -194,12 +194,15 @@ async def main():
         )
 
     all_results = {}
+    flag = 0
     if os.path.exists(args.store):
         all_results = json.load(open(args.store, "r"))
 
     for i, example in enumerate(dataset):
         if i == args.N:
             break
+        if res_planner.ENABLE_LOGGING and i == 5:
+            res_planner.RESOURCE_LIMITED = True  # 真正修改模块变量
         id = example["id"]
         question = example["question"]
         _label = example["answer"]

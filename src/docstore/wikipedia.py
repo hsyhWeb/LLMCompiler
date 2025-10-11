@@ -3,12 +3,12 @@
 import ast
 import time
 from typing import List, Optional, Union
-
+import asyncio
 import aiohttp
 import requests
 from bs4 import BeautifulSoup
 from langchain_community.docstore.base import Docstore
-
+from src.utils import res_planner
 from langchain.docstore.document import Document
 
 
@@ -180,39 +180,57 @@ class ReActWikipedia(Docstore):
 
         return result
 
+    import aiohttp
+    import asyncio
+    import time
+    from typing import Union
+
     async def asearch(
-        self, entity: str, is_retry: bool = False
-    ) -> Union[str, Document]:
-        """Try to search for wiki page.
+            self, entity: str, is_retry: bool = False
+    ) -> Union[str, "Document"]:
+        """Try to search for wiki page asynchronously."""
 
-        If page exists, return the page summary, and a PageWithLookups object.
-        If page does not exist, return similar entries.
-
-        Args:
-            entity: entity string.
-
-        Returns: a Document object or error message.
-        """
         s = time.time()
         entity = str(entity)
         entity_ = entity.replace(" ", "+")
         search_url = f"https://en.wikipedia.org/w/index.php?search={entity_}"
-        proxy = "http://127.0.0.1:1080"
-        timeout = aiohttp.ClientTimeout(total=30)
-        async with aiohttp.ClientSession(timeout=timeout) as session:
-            async with session.get(search_url, proxy=proxy, proxy_auth=None) as response:
-                response_text = await response.text()
 
+        timeout = aiohttp.ClientTimeout(total=30)
+        headers = {
+            "User-Agent": (
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/141.0.0.0 Safari/537.36"
+            ),
+            "Accept-Language": "en-US,en;q=0.9",
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        }
+
+        proxy = "http://127.0.0.1:1080"  # 如果不需要代理，可以去掉
+
+        async def fetch(url):
+            async with aiohttp.ClientSession(timeout=timeout, headers=headers) as session:
+                try:
+                    async with session.get(url, proxy=proxy) as response:
+                        if response.status != 200:
+                            raise ValueError(f"HTTP error {response.status} for URL {url}")
+                        return await response.text()
+                except aiohttp.ClientError as e:
+                    if not is_retry:
+                        await asyncio.sleep(1)
+                        return await fetch(url)
+                    raise e
+
+        # 第一次搜索
+        response_text = await fetch(search_url)
         result = await self.apost_process(response_text, entity)
 
+        # 如果提示 Similar，再尝试一次
         if "Similar:" in result:
             alternative = self._get_alternative(result)
             entity_ = alternative.replace(" ", "+")
             search_url = f"https://en.wikipedia.org/w/index.php?search={entity_}"
-            async with aiohttp.ClientSession(timeout=timeout) as session:
-                async with session.get(search_url, proxy=proxy, proxy_auth=None) as response:
-                    response_text = await response.text()
-
+            response_text = await fetch(search_url)
             result = await self.apost_process(
                 response_text, entity, skip_retry_when_postprocess=True
             )
@@ -220,8 +238,8 @@ class ReActWikipedia(Docstore):
             if "Similar:" in result:
                 return "Could not find " + entity + "."
 
+        # Benchmark 计时
         if self.benchmark and not is_retry:
-            # we only benchmark the outermost call
             self.all_times.append(round(time.time() - s, 2))
 
         return result
@@ -256,7 +274,10 @@ class DocstoreExplorer:
 
     async def asearch(self, term: str) -> str:
         """Search for a term in the docstore, and if found save."""
+
         result = await self.docstore.asearch(term)
+        # if res_planner.ENABLE_LOGGING and delay > 0:
+        #     await asyncio.sleep(delay)
         if self.one_sentence:
             result = result.split(". ")[0]
         if self.char_limit is not None:

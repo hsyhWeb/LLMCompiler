@@ -4,7 +4,7 @@ import asyncio
 import re
 from typing import Any, Optional, Sequence, Union
 from uuid import UUID
-
+from src.utils import res_planner
 from langchain.callbacks.base import AsyncCallbackHandler, Callbacks
 from langchain.chat_models.base import BaseChatModel
 from langchain.llms.base import BaseLLM
@@ -22,6 +22,7 @@ from src.llm_compiler.output_parser import (
 from src.llm_compiler.task_fetching_unit import Task
 from src.tools.base import StructuredTool, Tool
 from src.utils.logger_utils import log
+from src.utils.res_planner import tool_logs
 
 JOIN_DESCRIPTION = (
     "join():\n"
@@ -51,21 +52,63 @@ def generate_llm_compiler_prompt(
     prefix += f"{i+2}. {JOIN_DESCRIPTION}\n\n"
 
     # Guidelines
-    prefix += (
-        "Guidelines:\n"
-        " - Each action described above contains input/output types and description.\n"
-        "    - You must strictly adhere to the input and output types for each action.\n"
-        "    - The action descriptions contain the guidelines. You MUST strictly follow those guidelines when you use the actions.\n"
-        " - Each action in the plan should strictly be one of the above types. Follow the Python conventions for each action.\n"
-        " - Each action MUST have a unique ID, which is strictly increasing.\n"
-        " - Inputs for actions can either be constants or outputs from preceding actions. "
-        "In the latter case, use the format $id to denote the ID of the previous action whose output will be the input.\n"
-        f" - Always call join as the last action in the plan. Say '{END_OF_PLAN}' after you call join\n"
-        " - Ensure the plan maximizes parallelizability.\n"
-        " - Only use the provided action types. If a query cannot be addressed using these, invoke the join action for the next steps.\n"
-        " - Never explain the plan with comments (e.g. #).\n"
-        " - Never introduce new actions other than the ones provided.\n\n"
-    )
+
+    if res_planner.ENABLE_LOGGING == True:
+        resources = res_planner.describe_resources_for_prompt()
+        tool_logs = res_planner.describe_average_tool_times()
+        prefix += (
+            "Guidelines:\n"
+            " - Each action described above contains input/output types and description.\n"
+            "    - You must strictly adhere to the input and output types for each action.\n"
+            "    - The action descriptions contain the guidelines. You MUST strictly follow those guidelines when you use the actions.\n"
+            " - Each action in the plan should strictly be one of the above types. Follow the Python conventions for each action.\n"
+            " - Each action MUST have a unique ID, which is strictly increasing.\n"
+            " - Inputs for actions can either be constants or outputs from preceding actions. "
+            "In the latter case, use the format $id to denote the ID of the previous action whose output will be the input.\n"
+            f" - Always call join as the last action in the plan. Say '{END_OF_PLAN}' after you call join\n"
+            " - Ensure the plan maximizes parallelizability.\n"
+            " - Only use the provided action types. If a query cannot be addressed using these, invoke the join action for the next steps.\n"
+            " - Never explain the plan with comments (e.g. #).\n"
+            " - Never introduce new actions other than the ones provided.\n\n"
+
+            "Resource Scheduling Rules:\n"
+            f"- Available resource levels (fastest to slowest): {resources}\n"
+            f"- Tool execution time trends: {tool_logs}\n\n"
+
+            "Critical Path Requirements:\n"
+            "1. Perform critical path analysis to:\n"
+            "   a. Identify the longest dependency chain\n"
+            "   b. Optimize resource allocation for critical tasks\n"
+            "   c. Allow non-critical tasks to use remaining resources\n\n"
+
+            "Action Parameters Specification:\n"
+            " - Each action MUST include a 'level' parameter (action_name(input, level=X))\n"
+            " - Level allocation principles:\n"
+            "   a. Prioritize tasks based on critical path analysis\n"
+            "   b. Maintain parallel task count within resource limits\n"
+            "   c. Handle resource conflicts through priority-based scheduling\n\n"
+
+            "Conflict Resolution:\n"
+            "1. When resource conflicts occur:\n"
+            "   a. Prioritize tasks in the critical path\n"
+            "   b. Apply automatic downgrade to next available level\n"
+        )
+    else:
+        prefix += (
+            "Guidelines:\n"
+            " - Each action described above contains input/output types and description.\n"
+            "    - You must strictly adhere to the input and output types for each action.\n"
+            "    - The action descriptions contain the guidelines. You MUST strictly follow those guidelines when you use the actions.\n"
+            " - Each action in the plan should strictly be one of the above types. Follow the Python conventions for each action.\n"
+            " - Each action MUST have a unique ID, which is strictly increasing.\n"
+            " - Inputs for actions can either be constants or outputs from preceding actions. "
+            "In the latter case, use the format $id to denote the ID of the previous action whose output will be the input.\n"
+            f" - Always call join as the last action in the plan. Say '{END_OF_PLAN}' after you call join\n"
+            " - Ensure the plan maximizes parallelizability.\n"
+            " - Only use the provided action types. If a query cannot be addressed using these, invoke the join action for the next steps.\n"
+            " - Never explain the plan with comments (e.g. #).\n"
+            " - Never introduce new actions other than the ones provided.\n\n"
+        )
 
     if is_replan:
         prefix += (

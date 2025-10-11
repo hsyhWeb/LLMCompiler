@@ -1,8 +1,8 @@
 [
-    {
+   {
         "id": "1",
-        "question": "If Mariana Trench was 20% shallower and the Puerto Rico Trench was 20% deeper, which one would be shallower?",
-        "answer": "Mariana Trench",
+        "question": "Given the Yangtze River shortened by 15% and the Mississippi River extended by 20%, which river becomes shorter?",
+        "answer": "Mississippi River",
         "branch": 2
     },
     {
@@ -673,8 +673,8 @@
     },
     {
         "id": "113",
-        "question": "Determine the smallest ratio when comparing the population of China to Japan, Thailand to South Korea, Vietnam to Thailand, and Japan to Vietnam.",
-        "answer": "1.25",
+        "question": "Identify the smallest ratio from the following comparisons: Amazon Rainforest to Congo Rainforest, Congo Rainforest to Australian Forest, Australian Forest to Borneo Rainforest, and Borneo Rainforest to Black Forest.",
+        "answer": "1.361",
         "branch": 5
     }
 ]

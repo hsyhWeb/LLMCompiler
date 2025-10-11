@@ -3,9 +3,9 @@ from __future__ import annotations
 import asyncio
 from dataclasses import dataclass
 from typing import Any, Callable, Collection, Dict, List, Optional
-
+import time
 from src.utils.logger_utils import log
-
+from src.utils import res_planner
 SCHEDULING_INTERVAL = 0.01  # seconds
 
 
@@ -51,9 +51,15 @@ class Task:
     is_join: bool = False
 
     async def __call__(self) -> Any:
+        start_time = time.perf_counter()
         log("running task")
         x = await self.tool(*self.args)
         log("done task")
+        duration = time.perf_counter() - start_time
+
+        if res_planner.ENABLE_LOGGING and not res_planner.RESOURCE_LIMITED:
+            res_planner.log_tool_execution(self.tool_name, duration)
+
         return x
 
     def get_though_action_observation(
@@ -129,6 +135,7 @@ class TaskFetchingUnit:
             executable_tasks = self._get_all_executable_tasks()
 
             for task_name in executable_tasks:
+
                 asyncio.create_task(self._run_task(self.tasks[task_name]))
                 self.remaining_tasks.remove(task_name)
 
@@ -155,6 +162,7 @@ class TaskFetchingUnit:
 
             if executable_tasks:
                 for task_name in executable_tasks:
+                    ##await self._run_task(self.tasks[task_name])
                     asyncio.create_task(self._run_task(self.tasks[task_name]))
                     self.remaining_tasks.remove(task_name)
             elif no_more_tasks and self._all_tasks_done():
