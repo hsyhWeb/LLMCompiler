@@ -211,7 +211,7 @@ class ReActWikipedia(Docstore):
         async def fetch(url):
             async with aiohttp.ClientSession(timeout=timeout, headers=headers) as session:
                 try:
-                    async with session.get(url, proxy=proxy) as response:
+                    async with session.get(url) as response:
                         if response.status != 200:
                             raise ValueError(f"HTTP error {response.status} for URL {url}")
                         return await response.text()
