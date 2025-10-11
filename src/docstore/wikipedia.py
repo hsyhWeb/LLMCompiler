@@ -206,7 +206,7 @@ class ReActWikipedia(Docstore):
             "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
         }
 
-        proxy = "http://127.0.0.1:1080"  # 如果不需要代理，可以去掉
+        # proxy = "http://127.0.0.1:1080"  # 如果不需要代理，可以去掉
 
         async def fetch(url):
             async with aiohttp.ClientSession(timeout=timeout, headers=headers) as session:
