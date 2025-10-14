@@ -15,16 +15,39 @@ class StatsCallbackHandler(BaseCallbackHandler):
         self.output_tokens = 0
         self.all_times = []
         self.start_time = 0
+        self.encoder = tiktoken.encoding_for_model("gpt-4")
 
+    # def on_chat_model_start(self, serialized, prompts, **kwargs):
+    #     self.start_time = time.time()
+    #
+    # def on_llm_end(self, response, *args, **kwargs):
+    #     token_usage = response.llm_output["token_usage"]
+    #     self.input_tokens += token_usage["prompt_tokens"]
+    #     self.output_tokens += token_usage["completion_tokens"]
+    #     self.cnt += 1
+    #     self.all_times.append(round(time.time() - self.start_time, 2))
     def on_chat_model_start(self, serialized, prompts, **kwargs):
         self.start_time = time.time()
 
-    def on_llm_end(self, response, *args, **kwargs):
-        token_usage = response.llm_output["token_usage"]
-        self.input_tokens += token_usage["prompt_tokens"]
-        self.output_tokens += token_usage["completion_tokens"]
+        # if streaming mode, on_llm_end response is not collected
+        # therefore, we need to count input token based on the
+        # prompt length at the beginning
         self.cnt += 1
+        self.input_tokens += len(self.encoder.encode(prompts[0][0].content))
+
+    def on_llm_new_token(self, token, *args, **kwargs):
+
+        # if streaming mode, on_llm_end response is not collected
+        # therefore, we need to manually count output token based on the
+        # number of streamed out tokens
+        self.output_tokens += 1
+
+    def on_llm_end(self, response, *args, **kwargs):
         self.all_times.append(round(time.time() - self.start_time, 2))
+
+        # if not streaming mode, on_llm_end response is collected
+        # so we can use this stats directly
+
 
     def reset(self) -> None:
         self.cnt = 0

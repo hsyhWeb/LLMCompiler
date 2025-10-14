@@ -166,7 +166,7 @@ async def main():
             model_type=args.model_type,
             model_name=model_name,
             vllm_port=args.vllm_port,
-            stream=False,
+            stream=True,
             temperature=0,
         )
         planner_llm = get_model(

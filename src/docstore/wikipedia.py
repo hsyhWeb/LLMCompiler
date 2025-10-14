@@ -142,30 +142,54 @@ class ReActWikipedia(Docstore):
         obs = obs.replace("\\n", "")
         return obs
 
-    def search(self, entity: str, is_retry: bool = False) -> Union[str, Document]:
-        """Try to search for wiki page.
+    def search(self, entity: str, is_retry: bool = False) -> Union[str, "Document"]:
+        """Try to search for wiki page synchronously with headers, timeout, and proxy."""
+        import requests
+        import time
 
-        If page exists, return the page summary, and a PageWithLookups object.
-        If page does not exist, return similar entries.
-
-        Args:
-            entity: entity string.
-
-        Returns: a Document object or error message.
-        """
         s = time.time()
         entity = str(entity)
         entity_ = entity.replace(" ", "+")
         search_url = f"https://en.wikipedia.org/w/index.php?search={entity_}"
-        response_text = requests.get(search_url).text
+
+        headers = {
+            "User-Agent": (
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/141.0.0.0 Safari/537.36"
+            ),
+            "Accept-Language": "en-US,en;q=0.9",
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        }
+
+        # proxy = {"http": "http://127.0.0.1:1080", "https": "http://127.0.0.1:1080"}  # 可去掉如果不需要代理
+
+        def fetch(url):
+            try:
+                response = requests.get(url, headers=headers, timeout=30, proxies=proxy)
+                response.raise_for_status()
+                return response.text
+            except requests.RequestException:
+                if not is_retry:
+                    time.sleep(1)
+                    return fetch(url)
+                return None
+
+        # 第一次搜索
+        response_text = fetch(search_url)
+        if response_text is None:
+            return f"Could not fetch {entity}."
 
         result = self.post_process(response_text, entity)
 
+        # 如果提示 Similar，再尝试一次
         if "Similar:" in result:
             alternative = self._get_alternative(result)
             entity_ = alternative.replace(" ", "+")
             search_url = f"https://en.wikipedia.org/w/index.php?search={entity_}"
-            response_text = requests.get(search_url).text
+            response_text = fetch(search_url)
+            if response_text is None:
+                return f"Could not fetch {alternative}."
 
             result = self.post_process(
                 response_text, entity, skip_retry_when_postprocess=True
@@ -174,8 +198,8 @@ class ReActWikipedia(Docstore):
             if "Similar:" in result:
                 result = "Could not find " + entity + "."
 
-        if self.benchmark and not is_retry:
-            # we only benchmark the outermost call
+        # Benchmark 计时
+        if getattr(self, "benchmark", False) and not is_retry:
             self.all_times.append(round(time.time() - s, 2))
 
         return result

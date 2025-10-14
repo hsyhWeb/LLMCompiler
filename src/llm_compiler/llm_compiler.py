@@ -109,7 +109,7 @@ class LLMCompiler(Chain, extra="allow"):
         self.benchmark = benchmark
         if benchmark:
             self.planner_callback = AsyncStatsCallbackHandler(stream=planner_stream)
-            self.executor_callback = AsyncStatsCallbackHandler(stream=False)
+            self.executor_callback = AsyncStatsCallbackHandler(stream=True)
         else:
             self.planner_callback = None
             self.executor_callback = None
