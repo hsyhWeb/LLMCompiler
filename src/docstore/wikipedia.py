@@ -166,7 +166,7 @@ class ReActWikipedia(Docstore):
 
         def fetch(url):
             try:
-                response = requests.get(url, headers=headers, timeout=30, proxies=proxy)
+                response = requests.get(url, headers=headers, timeout=30)
                 response.raise_for_status()
                 return response.text
             except requests.RequestException:
